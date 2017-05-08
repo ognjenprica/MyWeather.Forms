@@ -67,7 +67,13 @@ namespace MyWeather.ViewModels
             set { SetProperty(ref condition, value); ; }
         }
 
-        
+        string displayIcon = string.Empty;
+        public string DisplayIcon
+        {
+            get { return displayIcon; }
+            set { SetProperty(ref displayIcon, value); }
+        }
+
         WeatherForecastRoot forecast;
         public WeatherForecastRoot Forecast
         {
@@ -113,7 +119,9 @@ namespace MyWeather.ViewModels
                 Forecast = await WeatherService.GetForecast(weatherRoot.CityId, units);
 
                 var unit = IsImperial ? "F" : "C";
-                Temp = $"Temp: {weatherRoot?.MainWeather?.Temperature ?? 0}°{unit}";
+                // Temp = $"Temp: {weatherRoot?.MainWeather?.Temperature ?? 0}°{unit}";
+                Temp = $"{Math.Round(weatherRoot?.MainWeather?.Temperature ?? 0)}°{unit}";
+                DisplayIcon = $"{weatherRoot.DisplayIcon}";
                 Condition = $"{weatherRoot.Name}: {weatherRoot?.Weather?[0]?.Description ?? string.Empty}";
 
                 CrossTextToSpeech.Current.Speak(Temp + " " + Condition);

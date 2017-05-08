@@ -25,9 +25,21 @@
         </StackLayout>
 
 
-        <Button Text="Get Weather" Command="{Binding GetWeatherCommand}"/>
+        <!--<Button Text="Get Weather" Command="{Binding GetWeatherCommand}"/>
         <Label Text="{Binding Temp}" FontSize="24"/>
-        <Label Text="{Binding Condition}"/>
+        <Label Text="{Binding Condition}"/>-->
+        <Button Text="Get Weather" Command="{Binding GetWeatherCommand}"/>
+        <StackLayout Orientation="Vertical" Spacing="10">
+            <!--<StackLayout HorizontalOptions="FillAndExpand" Padding="0, 100, 0, 50" Spacing="0">-->
+            <Label Text="{Binding Temp}" FontSize="24" HorizontalOptions="Center"/>
+            <Image HeightRequest="88" 
+                                   WidthRequest="88" 
+                                   Source="{Binding DisplayIcon}"/>
+            <Label Text="{Binding Condition}"  HorizontalOptions="Center"/>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" Spacing="10">
+        </StackLayout>
+
         <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}"/>
     </StackLayout>
 </ContentPage>
