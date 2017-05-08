@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDisplayName</key>
-	<string>My Weather</string>
+	<string>My Weather Original</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.refractored.myweather</string>
+	<string>com.refractored.myweather.original</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>

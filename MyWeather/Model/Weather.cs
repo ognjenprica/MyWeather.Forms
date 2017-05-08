@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace MyWeather.Models
 {
@@ -98,11 +99,16 @@ namespace MyWeather.Models
         public string Date { get; set; } = string.Empty;
 
         [JsonIgnore]
-        public string DisplayDate => DateTime.Parse(Date).ToLocalTime().ToString("g");
+        // public string DisplayDate => DateTime.Parse(Date).ToString("g");
+        //public string DisplayDate => DateTime.Parse(Date).ToLocalTime().ToString("g");
+        public string DisplayDate => DateTime.Parse(Date).ToLocalTime().ToString("dddd dd MMMM hh:mm tt");
+        // ToString("dddd dd MMMM",         CultureInfo.CreateSpecificCulture("en-US"))
+
         [JsonIgnore]
-        public string DisplayTemp => $"Temp: {MainWeather?.Temperature ?? 0}° {Weather?[0]?.Main ?? string.Empty}";
+        public string DisplayTemp => $"Temp: {Math.Round(MainWeather?.Temperature ?? 0)}° {Weather?[0]?.Main ?? string.Empty}";
         [JsonIgnore]
-        public string DisplayIcon => $"http://openweathermap.org/img/w/{Weather?[0]?.Icon}.png";
+        //public string DisplayIcon => $"http://openweathermap.org/img/w/{Weather?[0]?.Icon}.png";
+        public string DisplayIcon => $"http://slg-compass360-azure-api.azurewebsites.net/api/weather/image?icon={Weather?[0]?.Icon}.png";
     }
 
     public class WeatherForecastRoot
